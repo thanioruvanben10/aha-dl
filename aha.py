@@ -6,7 +6,7 @@ from pywidevine.decrypt.wvdecrypt import WvDecrypt
 # fuck aha
 contentID = input("Enter Content ID: ")
 authorization = 'value of account specific authorization header'
-auth = 'value of account specific x-authorization header'
+x_authorization = 'value of account specific x-authorization header'
 deviceID = 'c2abeefd-5997-4f36-bacb-276760c1a39b' # chrome deviceID, constant
 headers = {
     'authority': 'device-register-service.api.aha.firstlight.ai',
@@ -18,7 +18,9 @@ headers = {
 response = requests.post(url= 'https://device-register-service.api.aha.firstlight.ai/device/app/register', headers= headers, data=
 '{"uniqueId":"' + deviceID + '"}'
 )
-print (response.content)
+
+# print (response.content)
+
 secret = json.loads(response.content)['data']['secret']
 servertime = int(json.loads(response.content)['header']['system_time'])
 jwttime = (servertime)/1000
@@ -50,12 +52,11 @@ headers2 = {
     'authorization': authorization,
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36',
     'x-client-id': 'firstlight-main-iosmobile',
-    'x-authorization': auth,
+    'x-authorization': x_authorization,
     'x-device-id': x,
 }
 response2 = requests.post('https://playback-auth-service.api.aha.firstlight.ai/media/content/authorize', headers=headers2, json=json_data)
 try:
-
     mpd_url = json.loads(response2.content)['data']['contentUrl']
     license_url = json.loads(response2.content)['data']['licenseUrl']
 except KeyError:
@@ -80,5 +81,3 @@ for key in keys:
         if key.type == 'CONTENT':
             key = ('{}:{}'.format(key.kid.hex(), key.key.hex()))
             print (key)
-
-    
