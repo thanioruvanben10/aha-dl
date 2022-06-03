@@ -7,7 +7,7 @@ from pywidevine.decrypt.wvdecrypt import WvDecrypt
 contentID = input("Enter Content ID: ")
 authorization = 'value of account specific authorization header'
 x_authorization = 'value of account specific x-authorization header'
-deviceID = 'c2abeefd-5997-4f36-bbcb-276760c1a39b' # chrome deviceID, constant
+deviceID = 'c2abeefd-5997-4f36-bacb-276760c1a39b' # chrome deviceID, constant
 headers = {
     'authority': 'device-register-service.api.aha.firstlight.ai',
     'authorization': authorization,
