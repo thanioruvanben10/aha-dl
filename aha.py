@@ -13,7 +13,7 @@ headers = {
     'authorization': authorization,
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36',
     'x-client-id': 'firstlight-main-iosmobile',
-    'x-authorization': auth,
+    'x-authorization': x_authorization,
 }
 response = requests.post(url= 'https://device-register-service.api.aha.firstlight.ai/device/app/register', headers= headers, data=
 '{"uniqueId":"' + deviceID + '"}'
